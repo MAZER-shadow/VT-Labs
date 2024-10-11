@@ -1,16 +1,15 @@
-package Attacksmypokemons.Attacksstunfisk;
+package attacks.attacksclefable;
 
 import ru.ifmo.se.pokemon.PhysicalMove;
 import ru.ifmo.se.pokemon.Type;
 
-public class Tackle extends PhysicalMove {
-    public Tackle() {
+public class Pound extends PhysicalMove {
+    public Pound() {
         super(Type.NORMAL,40,100);
     }
 
     @Override
     protected String describe() {
-        return "Использует Tackle";
+        return "Использует Pound";
     }
 }
-

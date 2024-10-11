@@ -1,4 +1,4 @@
-package Attacksmypokemons.Attacksglalie;
+package attacks.attacksglalie;
 
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.SpecialMove;

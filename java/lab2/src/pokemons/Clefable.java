@@ -1,6 +1,6 @@
-package Mypokemons;
+package mypokemons;
 
-import Attacksmypokemons.Attacksclefable.WorkUp;
+import attacksmypokemons.attacksclefable.WorkUp;
 
 public class Clefable extends Clefairy{
     public Clefable(String name,int level) {

@@ -1,13 +1,13 @@
-package Attacksmypokemons.Attacksglalie;
+package attacks.attacksglalie;
 
 import ru.ifmo.se.pokemon.Effect;
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.SpecialMove;
 import ru.ifmo.se.pokemon.Type;
 
-public class IceBeam extends SpecialMove {
-    public IceBeam() {
-        super(Type.ICE,90,100);
+public class PowderSnow extends SpecialMove {
+    public PowderSnow() {
+        super(Type.ICE,40,100);
     }
 
     @Override
@@ -19,6 +19,6 @@ public class IceBeam extends SpecialMove {
 
     @Override
     protected String describe() {
-        return "Использует Ice Beam";
+        return "Использует Powder Snow";
     }
 }

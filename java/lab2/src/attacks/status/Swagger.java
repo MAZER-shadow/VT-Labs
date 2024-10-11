@@ -1,4 +1,4 @@
-package Attacksmypokemons.Attacksclefable;
+package attacks.attacksclefable;
 
 import ru.ifmo.se.pokemon.StatusMove;
 import ru.ifmo.se.pokemon.Pokemon;
