@@ -1,9 +1,9 @@
-package mypokemons;
+package pokemons;
 import ru.ifmo.se.pokemon.Pokemon;
-import attacksmypokemons.attacksstunfisk.Mudshot;
-import attacksmypokemons.attacksstunfisk.Spark;
-import attacksmypokemons.attacksstunfisk.Tackle;
-import attacksmypokemons.attacksstunfisk.Thunder;
+import attacks.special.Mudshot;
+import attacks.physical.Spark;
+import attacks.physical.Tackle;
+import attacks.special.Thunder;
 import ru.ifmo.se.pokemon.Type;
 
 public class Stunfisk extends Pokemon{

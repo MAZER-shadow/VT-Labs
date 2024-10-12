@@ -1,4 +1,4 @@
-package attacks.attacksstunfisk;
+package attacks.special;
 
 import ru.ifmo.se.pokemon.Effect;
 import ru.ifmo.se.pokemon.Pokemon;

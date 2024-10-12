@@ -1,7 +1,7 @@
-package mypokemons;
+package pokemons;
 
-import attacksmypokemons.attacksclefable.ShadowBall;
-import attacksmypokemons.attacksclefable.Swagger;
+import attacks.special.ShadowBall;
+import attacks.status.Swagger;
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
 

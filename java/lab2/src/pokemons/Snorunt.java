@@ -1,8 +1,8 @@
-package mypokemons;
+package pokemons;
 
-import attacksmypokemons.attacksglalie.FrostBreath;
-import attacksmypokemons.attacksglalie.IceBeam;
-import attacksmypokemons.attacksglalie.PowderSnow;
+import attacks.special.FrostBreath;
+import attacks.special.IceBeam;
+import attacks.special.PowderSnow;
 import ru.ifmo.se.pokemon.Pokemon;
 import ru.ifmo.se.pokemon.Type;
 

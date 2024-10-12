@@ -1,4 +1,4 @@
-package attacks.attacksstunfisk;
+package attacks.physical;
 
 import ru.ifmo.se.pokemon.Effect;
 import ru.ifmo.se.pokemon.PhysicalMove;

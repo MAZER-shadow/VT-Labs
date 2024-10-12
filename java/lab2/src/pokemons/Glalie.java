@@ -1,5 +1,5 @@
-package mypokemons;
-import attacksmypokemons.attacksglalie.DarkPulse;
+package pokemons;
+import attacks.special.DarkPulse;
 
 public class Glalie extends Snorunt {
     public Glalie(String name, int level) {

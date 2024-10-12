@@ -1,4 +1,4 @@
-package attacks.attacksstunfisk;
+package attacks.special;
 
 import ru.ifmo.se.pokemon.SpecialMove;
 import ru.ifmo.se.pokemon.Type;
