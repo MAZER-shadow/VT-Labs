@@ -3,7 +3,7 @@ package lab.action;
 public enum State {
     HAPPY("дикая радость"),
     ANGRY("дикое недовольство"),
-    NORMAL("асболютное спокойствие");
+    NORMAL("абсолютное спокойствие");
 
     private final String description;
 

@@ -2,7 +2,8 @@ package lab.action;
 
 public class Musician extends Personage implements Soundeble{
     private float rating;
-    private MusicInstrument Instruments;
+    private MusicInstrument instruments;
+    private String voice;
 
     public Musician(String name) throws NonExistentRatingException {
         this(name, MusicInstrument.NOUN, 4.0f);
@@ -12,9 +13,15 @@ public class Musician extends Personage implements Soundeble{
         this(name, Instruments, 4.0f);
     }
 
-    public Musician(String name, MusicInstrument Instruments, float rating) throws NonExistentRatingException{
+    public Musician(String name, MusicInstrument Instruments, float rating) throws NonExistentRatingException {
+        this(name, Instruments, rating, "пение");
+    }
+
+    public Musician(String name, MusicInstrument Instruments, float rating, String voice) throws NonExistentRatingException{
         super(name);
-        this.Instruments = Instruments;
+        this.instruments = Instruments;
+        this.rating = rating;
+        this.voice = voice;
         if (rating < 0.0 || rating > 10.0) {
             throw new NonExistentRatingException();
         }
@@ -22,8 +29,22 @@ public class Musician extends Personage implements Soundeble{
 
     }
 
+    @Override
+    public void printInformation() {
+        if (instruments != null && instruments != MusicInstrument.NOUN) {
+            System.out.println("Рейтинг музыканта: " + rating + " звук музыканта:" + voice);
+        }else {
+            System.out.println("Рейтинг музыканта: " + rating + " звук музыканта: " + instruments.getDescribe());
+        }
+
+    }
+
     public void playSound(){
-        System.out.println(getName() + " playing sound");
+        if (instruments == MusicInstrument.NOUN){
+            System.out.println(getName() + " издаёт " +  instruments.getDescribe() + voice);
+        } else{
+            System.out.println(getName() + " издаёт " +  instruments.getDescribe());
+        }
     }
 
     public float getRating() {

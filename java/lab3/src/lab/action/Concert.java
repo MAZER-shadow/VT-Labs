@@ -21,11 +21,22 @@ public class Concert{
         for (Musician musician :orchestra.getMembers()){
             musician.playSound();
         }
+        System.out.println("Оркестр: \"" + orchestra.getName() + "\" закончил давать концерт: \"" + name + "\" в " + location.name());
+        for (Listener listener : listeners){
+            listener.formRating(orchestra.getGenre(),orchestra.getRating());
+        }
+        for (Listener listener: getListeners()){
+            listener.setState();
+            listener.moveHome();
+            listener.showEmotional();
+        }
+
     }
 
     public void addListener(Listener listener){
         listeners.add(listener);
-        System.out.println("На концерт пришёл " + listener.getName());
+        System.out.println("На концерт пришёл из " + listener.getLocation().name() + " " + listener.getName());
+        listener.moveLocation(location);
     }
 
     public String getName() {
@@ -38,5 +49,9 @@ public class Concert{
 
     public Location getLocation() {
         return location;
+    }
+
+    public List<Listener> getListeners() {
+        return listeners;
     }
 }

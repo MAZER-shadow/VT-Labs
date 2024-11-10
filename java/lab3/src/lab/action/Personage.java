@@ -7,6 +7,8 @@ public abstract class  Personage {
         this.name = name;
     }
 
+    public abstract void printInformation();
+
     public String getName() {
         return name;
     }

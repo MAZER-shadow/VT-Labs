@@ -8,6 +8,7 @@ public class Orchestra implements Moveble {
     private String name;
     private Genre genre;
     private List<Musician> members = new ArrayList<>();
+    private double rating;
 
 
 
@@ -16,7 +17,7 @@ public class Orchestra implements Moveble {
     }
 
     public Orchestra(String name) {
-        this(new Location("Unknown"), name) ;
+        this(new Location("Unknown","Unknown"), name) ;
     }
 
     public Orchestra(Location location, String name) {
@@ -30,6 +31,21 @@ public class Orchestra implements Moveble {
         System.out.println("Появился оркестр: \""+this.getName() + "\"");
     }
 
+    public void addMembers(Musician member) {
+        this.members.add(member);
+        System.out.println("К оркестру \"" + name + "\" присоеденился " + member.getName());
+    }
+
+    public void removeMembers(Musician member) {
+        this.members.remove(member);
+    }
+
+    public void formRating(){
+        for (Musician member : members) {
+            rating += member.getRating();
+        }
+        rating = rating / this.members.size();
+    }
 
     public Location getLocation() {
         return location;
@@ -63,12 +79,7 @@ public class Orchestra implements Moveble {
         return xxx;
     }
 
-    public void addMembers(Musician member) {
-        this.members.add(member);
-        System.out.println("К оркестру \"" + name + "\" присоеденился " + member.getName());
-    }
-
-    public void removeMembers(Musician member) {
-        this.members.remove(member);
+    public double getRating() {
+        return rating;
     }
 }
