@@ -3,29 +3,32 @@ package lab.action;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Concert{
+public class Concert {
     private String name;
     private Orchestra orchestra;
     private Location location;
     private List<Listener> listeners = new ArrayList<>();
 
-    public Concert(String name, Orchestra orchestra, Location location){
+    public Concert(String name, Orchestra orchestra, Location location) {
         this.name = name;
         this.orchestra = orchestra;
         this.location = location;
-        System.out.println(orchestra.getName() + " объявили о проведении концерта \"" + name + "\"");
+        System.out.println(orchestra.getName() + " объявили о проведении концерта \"" + name + "\" " + location.name() + " " + location.address());
     }
 
-    public void play(){
+    public void play() throws NoMemberFoundException {
+        if (orchestra.getMembers().size() == 0) {
+            throw new NoMemberFoundException("Нет участников в оркестре");
+        }
         System.out.println("Оркестр: \"" + orchestra.getName() + "\" начал давать концерт: \"" + name + "\" в " + location.name());
-        for (Musician musician :orchestra.getMembers()){
+        for (Musician musician : orchestra.getMembers()) {
             musician.playSound();
         }
         System.out.println("Оркестр: \"" + orchestra.getName() + "\" закончил давать концерт: \"" + name + "\" в " + location.name());
-        for (Listener listener : listeners){
-            listener.formRating(orchestra.getGenre(),orchestra.getRating());
+        for (Listener listener : listeners) {
+            listener.formRating(orchestra.getGenre(), orchestra.getRating());
         }
-        for (Listener listener: getListeners()){
+        for (Listener listener : getListeners()) {
             listener.setState();
             listener.moveHome();
             listener.showEmotional();
@@ -33,9 +36,8 @@ public class Concert{
 
     }
 
-    public void addListener(Listener listener){
+    public void addListener(Listener listener) {
         listeners.add(listener);
-        System.out.println("На концерт пришёл из " + listener.getLocation().name() + " " + listener.getName());
         listener.moveLocation(location);
     }
 

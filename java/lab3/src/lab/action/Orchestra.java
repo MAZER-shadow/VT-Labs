@@ -11,13 +11,12 @@ public class Orchestra implements Moveble {
     private double rating;
 
 
-
     public Orchestra() {
         this("Unknown");
     }
 
     public Orchestra(String name) {
-        this(new Location("Unknown","Unknown"), name) ;
+        this(new Location("Unknown", "Unknown"), name);
     }
 
     public Orchestra(Location location, String name) {
@@ -28,10 +27,10 @@ public class Orchestra implements Moveble {
         this.location = location;
         this.name = name;
         this.genre = genre;
-        System.out.println("Появился оркестр: \""+this.getName() + "\"");
+        System.out.println("Появился оркестр: \"" + this.getName() + "\"");
     }
 
-    public void addMembers(Musician member) {
+    public void addMember(Musician member) {
         this.members.add(member);
         System.out.println("К оркестру \"" + name + "\" присоеденился " + member.getName());
     }
@@ -40,7 +39,7 @@ public class Orchestra implements Moveble {
         this.members.remove(member);
     }
 
-    public void formRating(){
+    public void formRating() {
         for (Musician member : members) {
             rating += member.getRating();
         }

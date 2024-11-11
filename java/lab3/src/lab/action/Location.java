@@ -1,3 +1,4 @@
 package lab.action;
 
-public record Location(String name, String address) { }
+public record Location(String name, String address) {
+}

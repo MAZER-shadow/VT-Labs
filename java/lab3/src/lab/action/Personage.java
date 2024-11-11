@@ -1,6 +1,6 @@
 package lab.action;
 
-public abstract class  Personage {
+public abstract class Personage {
     private String name;
 
     public Personage(String name) {

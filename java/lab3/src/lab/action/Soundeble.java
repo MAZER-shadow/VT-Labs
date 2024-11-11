@@ -1,5 +1,5 @@
 package lab.action;
 
-public interface Soundeble{
+public interface Soundeble {
     void playSound();
 }
