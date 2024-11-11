@@ -36,6 +36,7 @@ public class Main {
 
             Concert concert = new Concert("52", orchestra, placeConcert);
             addMembers(concert, anton, ruslan, andrey, daniil, aleksey, ilya, egor, roman, vlad);
+            orchestra.printSize();
             concert.play();
 
         } catch (NonExistentRatingException | NoMemberFoundException e) {

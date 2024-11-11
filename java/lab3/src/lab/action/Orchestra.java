@@ -27,7 +27,7 @@ public class Orchestra implements Moveble {
         this.location = location;
         this.name = name;
         this.genre = genre;
-        System.out.println("Появился оркестр: \"" + this.getName() + "\"");
+        System.out.println("Появился оркестр: \"" + this.getName() + "\" " + "c жанром: " + genre);
     }
 
     public void addMember(Musician member) {
@@ -44,6 +44,10 @@ public class Orchestra implements Moveble {
             rating += member.getRating();
         }
         rating = rating / this.members.size();
+    }
+
+    public void printSize(){
+        System.out.println("Оркестр состоит из " + members.size() + " человек");
     }
 
     public Location getLocation() {
