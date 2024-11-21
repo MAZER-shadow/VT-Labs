@@ -1,4 +1,5 @@
 # Символы и ключевые слова JSON
+
 JSON_COMMA = ','
 JSON_COLON = ':'
 JSON_LEFTBRACKET = '['
@@ -23,20 +24,18 @@ def lex_string(string):
     """
     Анализ строки JSON на текстовую строку, заключённую в кавычки.
     """
-    json_string = ''
-
-    if string[0] == QUOTE:
-        string = string[1:]
-    else:
+    if string[0] != '"':
         return None, string
 
-    for c in string:
-        if c == QUOTE:
-            return json_string, string[len(json_string) + 1:]
+    end_index = 1
+    while end_index < len(string):
+        if string[end_index] == '"':
+            return string[:end_index + 1], string[end_index + 1:]
+        elif string[end_index] == '\\':
+            # Пропускаем следующий символ (экранирование)
+            end_index += 2
         else:
-            json_string += c
-
-    raise Exception('Ожидается закрывающая кавычка в строке')
+            end_index += 1
 
 # Функция для анализа чисел
 def lex_number(string):
@@ -44,6 +43,7 @@ def lex_number(string):
     Анализ строки JSON на числовое значение.
     """
     json_number = ''
+
     number_characters = [str(d) for d in range(0, 10)] + ['-', 'e', '.']
 
     for c in string:
@@ -63,13 +63,16 @@ def lex_number(string):
     return int(json_number), rest
 
 # Функция для анализа ключевого слова null
+
 def lex_null(string):
     """
     Анализ строки JSON на ключевое слово null.
     """
-    strlen = len(string)
-    if strlen >= NULL_LEN and string[:NULL_LEN] == 'null':
-        return True, string[NULL_LEN]
+    string_len = len(string)
+
+    if string_len >= NULL_LEN and \
+            string[:NULL_LEN] == 'null':
+        return True, string[NULL_LEN:]
 
     return None, string
 
@@ -148,43 +151,48 @@ def parse_array(tokens):
             return json_array, tokens[1:]
         elif t != JSON_COMMA:
             raise Exception('Ожидается запятая после элемента массива')
-        tokens = tokens[1:]
+        tokens = tokens[1:] # Удаляем запятую и продолжаем
 
 # Парсер для объекта JSON
 def parse_object(tokens):
     """
-    Парсер для объектов JSON.
+    Парсинг JSON объекта (словаря).
     """
     json_object = {}
+    t = tokens[0]
 
-    if not tokens or tokens[0] == JSON_RIGHTBRACE:
+    # Проверка на закрывающую скобку (пустой объект)
+    if t == JSON_RIGHTBRACE:
         return json_object, tokens[1:]
 
     while True:
-        if not tokens:
-            raise Exception('Неожиданный конец ввода в объекте')
-
         json_key = tokens[0]
-        if isinstance(json_key, str):
+
+        # Проверка ключа объекта
+        if type(json_key) is str:
             tokens = tokens[1:]
         else:
-            raise Exception('Ожидается ключ типа строка')
+            raise Exception('Ожидался ключ типа строка.')
 
-        if not tokens or tokens[0] != JSON_COLON:
-            raise Exception('Ожидается двоеточие (:) в объекте')
-        tokens = tokens[1:]
+        # Проверка наличия двоеточия после ключа
+        if tokens[0] != JSON_COLON:
+            raise Exception('Ожидался символ двоеточия (:) в объекте типа словарь.')
+        else:
+            tokens = tokens[1:]
 
+        # Рекурсивный вызов парсинга для значения
         json_value, tokens = parse(tokens)
         json_object[json_key] = json_value
 
-        if not tokens:
-            raise Exception('Неожиданный конец ввода в объекте')
         t = tokens[0]
+        # Проверка на закрывающую скобку (конец объекта)
         if t == JSON_RIGHTBRACE:
             return json_object, tokens[1:]
+        # Проверка на запятую между парами ключ-значение
         elif t != JSON_COMMA:
-            raise Exception(f'Ожидается запятая после пары ключ-значение, получено: {t}')
+            raise Exception('Ожидалась запятая после пары ключ-значение в объекте, получено: {}'.format(t))
         tokens = tokens[1:]
+
 
 # Универсальный парсер JSON
 def parse(tokens):
@@ -341,10 +349,12 @@ class Yaml:
         else:
             return prefix + str(self._data)
 
-json_obj = open('myJson.json')
-midRes = loads(json_obj.read())
-print(midRes)
-yaml = Yaml
-fileFinal = open('resultFinal_dop_3_var2.yaml', 'w+')
-fileFinal.write(yaml.dump(midRes))
-fileFinal.close()
+try:
+    json_obj = open('etalon.json').read()
+    json_data = loads(json_obj)
+    fileFinal = open('resultFinal_dop_3_var2.yaml', 'w+')
+    yaml = Yaml
+    fileFinal.write(yaml.dump(json_data))
+    fileFinal.close()
+except FileNotFoundError:
+    print("нет такого json")
